@@ -1,0 +1,6 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+html{scroll-behavior:smooth;background:#0D1117}
+body{@apply bg-ink text-slate-200 font-sans antialiased}
+:focus-visible{outline:2px solid #E21A22;outline-offset:3px}
+.scan{position:fixed;inset:0;pointer-events:none;z-index:50;background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0,rgba(255,255,255,.025) 1px,transparent 1px,transparent 3px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important}.scan{display:none}}
