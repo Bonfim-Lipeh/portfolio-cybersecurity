@@ -3,10 +3,17 @@ import { X } from 'lucide-react'
 import { skills, certs, projects, boschValues } from '../data'
 
 type Line = { cmd?: string; out?: string[] }
-const HELP = ['Comandos disponíveis:', '  help           list commands', '  skills         technical skills', '  certifications credentials', '  projects       featured work', '  bosch          why BOSCH', '  clear          clear screen']
+const HELP = ['Comandos disponíveis:', '  ajuda - lista de comandos', '  habilidades técnicas', '  certificações', '  projetos', '  para bosch', '  limpar terminal']
+
+const normalizeCommand = (raw: string) => raw
+  .trim()
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/\s+/g, ' ')
 
 export default function Terminal() {
-  const [lines, setLines] = useState<Line[]>([{ out: ['Terminal pronto. Digite "help".'] }])
+  const [lines, setLines] = useState<Line[]>([{ out: ['Terminal de Segurança pronto. Digite "ajuda" para começar.'] }])
   const [val, setVal] = useState('')
   const [modal, setModal] = useState(false)
   const end = useRef<HTMLDivElement>(null)
@@ -21,26 +28,49 @@ export default function Terminal() {
   }, [modal])
 
   const run = (raw: string) => {
-    const cmd = raw.trim().toLowerCase()
+    const cmd = normalizeCommand(raw)
     let out: string[]
+
     switch (cmd) {
-      case 'help': out = HELP; break
-      case 'skills': out = skills.map(s => `  • ${s}`); break
-      case 'certifications': out = certs.map(c => `  • ${c.name} (${c.issuer}) — ${c.status}`); break
-      case 'projects': out = projects.map(p => `  • ${p.title}`); break
-      case 'bosch': out = ['Abrindo relatório de alinhamento…']; setModal(true); break
-      case 'clear': setLines([]); return
-      case '': return
-      default: out = [`comando não encontrado: ${cmd}. Digite "help".`]
+      case 'ajuda':
+      case 'help':
+        out = HELP
+        break
+      case 'habilidades':
+      case 'habilidades tecnicas':
+        out = skills.map(s => `  • ${s}`)
+        break
+      case 'certificacoes':
+      case 'certificações':
+        out = certs.map(c => `  • ${c.name} (${c.issuer}) — ${c.status}`)
+        break
+      case 'projetos':
+        out = projects.map(p => `  • ${p.title}`)
+        break
+      case 'para bosch':
+      case 'para: bosch':
+        out = ['Abrindo relatório de alinhamento...']
+        setModal(true)
+        break
+      case 'limpar':
+      case 'limpar terminal':
+      case 'clear':
+        setLines([])
+        return
+      case '':
+        return
+      default:
+        out = [`comando não encontrado: "${raw.trim() || 'vazio'}". Digite "ajuda".`]
     }
+
     setLines(l => [...l, { cmd: raw, out }])
   }
 
   return (
     <section id="terminal" aria-labelledby="t-h" className="mx-auto max-w-6xl px-6 py-20">
-      <h2 id="t-h" className="mb-6 text-3xl font-bold">Terminal interativo</h2>
+      <h2 id="t-h" className="mb-6 text-3xl font-bold">Interactive terminal</h2>
       <div className="border border-line bg-black/40 font-mono text-sm" onClick={() => document.getElementById('term-in')?.focus()}>
-        <div className="flex items-center gap-2 border-b border-line bg-panel px-4 py-2 text-mute"><span className="h-2.5 w-2.5 rounded-full bg-bosch" aria-hidden />felipe@soc:~</div>
+        <div className="flex items-center gap-2 border-b border-line bg-panel px-4 py-2 text-mute"><span className="h-2.5 w-2.5 rounded-full bg-bosch" aria-hidden />felipe@sec:~</div>
         <div role="log" aria-live="polite" className="h-72 overflow-y-auto p-4">
           {lines.map((l, i) => (
             <div key={i} className="mb-2">

@@ -1,3 +1,5 @@
+import { s } from "framer-motion/client"
+
 // TODO: replace every "#"/placeholder below with your real links and dates.
 export const profile = {
   name: 'Felipe Bonfim Pontes',
@@ -7,6 +9,8 @@ export const profile = {
   email: 'felipebonfimpontes@gmail.com',
   pgp: `-----BEGIN PGP PUBLIC KEY BLOCK-----\n(paste your public key here)\n-----END PGP PUBLIC KEY BLOCK-----`,
   formspreeId: import.meta.env.VITE_FORMSPREE_ID as string | undefined,
+  school: 'Centro Universitário FACENS',
+  course: 'Análise e Desenvolvimento de Sistemas',
 }
 export const skills = ['SIEM log triage', 'PowerShell', 'Active Directory hardening', 'Wireshark', 'Python', 'Node.js / Express', 'GLPI (ITSM)', 'ISO 27001 basics', 'MITRE ATT&CK']
 
