@@ -1,36 +1,73 @@
-// TODO: troque os links/placeholders pelos seus.
+// TODO: replace every "#"/placeholder below with your real links and dates.
 export const profile = {
   name: 'Felipe Bonfim Pontes',
-  course: 'Análise e Desenvolvimento de Sistemas',
-  school: 'Facens',
-  cvUrl: '/cv.pdf', // coloque seu PDF em public/cv.pdf
-  github: 'https://github.com/your-user',
-  linkedin: 'https://www.linkedin.com/in/your-user',
+  cvUrl: '/public/Felipe_Bonfim_Pontes_Curriculo_Cyberseguranca (1).pdf', // put your PDF at public/cv.pdf
+  github: 'https://github.com/Bonfim-Lipeh',
+  linkedin: 'https://www.linkedin.com/in/felipe-bonfim-pontes-b8807a178/',
   email: 'felipebonfimpontes@gmail.com',
-  pgp: `-----BEGIN PGP PUBLIC KEY BLOCK-----\n(cole sua chave pública aqui)\n-----END PGP PUBLIC KEY BLOCK-----`,
+  pgp: `-----BEGIN PGP PUBLIC KEY BLOCK-----\n(paste your public key here)\n-----END PGP PUBLIC KEY BLOCK-----`,
   formspreeId: import.meta.env.VITE_FORMSPREE_ID as string | undefined,
 }
-export const skills = ['Web Pentest (OWASP Top 10)', 'Burp Suite / OWASP ZAP / SQLmap', 'Nmap / Gobuster / Netcat', 'Triagem de logs em SIEM', 'PowerShell', 'Active Directory', 'DevSecOps (SAST/SCA, CI/CD)', 'GLPI (ITSM)', 'ISO 27001', 'MITRE ATT&CK']
-export type Project = { id: string; title: string; kind: string; summary: string; tools: string[]; skills: string[]; flow: string[]; repo: string }
+export const skills = ['SIEM log triage', 'PowerShell', 'Active Directory hardening', 'Wireshark', 'Python', 'Node.js / Express', 'GLPI (ITSM)', 'ISO 27001 basics', 'MITRE ATT&CK']
+
+export type Certification = {
+  name: string
+  issuer: string
+  status: 'Verified' | 'In progress'
+  issued: string
+  url: string
+}
+
+export const certs: Certification[] = [
+  { name: 'Junior Cybersecurity Analyst', issuer: 'Portfolio', status: 'Verified', issued: '2026', url: 'dist/Introduction_to_Cybersecurity_certificate_2370.pdf' },
+  { name: 'Ethical Hacker', issuer: 'Portfolio', status: 'In progress', issued: '2026', url: '#' },
+  { name: 'ISO 27001 & Governance', issuer: 'Portfolio', status: 'In progress', issued: '2026', url: '#' },
+  { name: 'Network Security Basics', issuer: 'Portfolio', status: 'Verified', issued: '2026', url: 'dist/Network_Security_Basics_certificate_2371.pdf' },
+]
+
+export type BoschValue = { k: string; v: string }
+
+export const boschValues: BoschValue[] = [
+  { k: 'Segurança por design', v: 'Priorizo controles e processos que reduzem riscos antes que eles se tornem incidentes.' },
+  { k: 'Resiliência operacional', v: 'Busco soluções que mantenham disponibilidade, observabilidade e resposta em cenários reais.' },
+  { k: 'Foco em pessoas', v: 'Trabalho com cultura, educação e governança para fortalecer a operação e a confiança.' },
+  { k: 'Inovação com critério', v: 'A tecnologia precisa resolver problemas concretos de segurança, eficiência e continuidade.' },
+]
+
+export type FocusArea = { t: string; d: string }
+
+export const focusAreas: FocusArea[] = [
+  { t: 'SOC e triagem', d: 'Investigação de eventos, correlação de alertas e resposta coordenada de incidentes.' },
+  { t: 'Red Team e pentest', d: 'Avaliação prática de infraestrutura, aplicações e fluxos de acesso com foco em risco.' },
+  { t: 'Hardening e mitigação', d: 'Fortalecimento de controles, remoção de riscos e suporte à maturidade da segurança.' },
+  { t: 'Automação e scripts', d: 'Uso de PowerShell, Python e automações para reduzir esforço manual e aumentar consistência.' },
+]
+
+export type Project = { id: string; title: string; summary: string; tags: string[]; flow: string[]; repo: string }
+
 export const projects: Project[] = [
-  { id: 'dvwa', title: 'Laboratório de Pentest DVWA', kind: 'Pentest Web', summary: 'Simulação do ciclo de vida completo de um teste de invasão web em ambiente controlado, do reconhecimento e interceptação de tráfego à exploração prática de vulnerabilidades críticas do OWASP Top 10 e elaboração de mitigações.', tools: ['Linux (DVWA)', 'Burp Suite', 'OWASP ZAP', 'SQLmap', 'DevTools'], skills: ['Web Penetration Testing', 'OWASP Top 10 (SQLi, XSS, Command Injection, LFI/RFI)', 'Força Bruta', 'Remediação de Código Seguro', 'Documentação Técnica'], flow: ['Reconhecimento', 'Interceptação de tráfego', 'Exploração', 'Mitigação', 'Relatório'], repo: 'https://github.com/your-user/dvwa-pentest-lab' },
-  { id: 'photographer', title: 'Fotógrafo - Guia do VulnHub', kind: 'Pentest de máquina', summary: 'Penetration test completo em ambiente controlado contra a máquina virtual Photographer (VulnHub), cobrindo reconhecimento, enumeração de serviços e escalonamento de privilégios para obtenção de acesso administrativo total.', tools: ['VulnHub (VirtualBox/VMware)', 'Nmap', 'Gobuster', 'Netcat', 'Markdown/PDF'], skills: ['Hacking Ético', 'Enumeração de Portas e Diretórios', 'Análise de Vulnerabilidades', 'Escalonamento de Privilégios em Linux', 'Hardening', 'Relatórios Executivos'], flow: ['Reconhecimento', 'Enumeração', 'Acesso inicial', 'Escalonamento', 'Relatório executivo'], repo: 'https://github.com/your-user/vulnhub-photographer' },
-  { id: 'prodesk', title: 'ProDesk (Mobile, DevOps e DevSecOps)', kind: 'Projeto mobile', summary: 'Aplicação mobile de reservas e aluguel de espaços corporativos sob demanda, estruturada para consolidar práticas modernas de DevOps e segurança desde a concepção (Shift-Left Security).', tools: ['Android Native (Kotlin/Java)', 'Gradle', 'Git/GitHub', 'CI/CD', 'SAST/SCA', 'AndroidManifest hardening'], skills: ['Arquitetura Mobile', 'Cultura DevSecOps', 'Automação de Builds', 'Gestão de Vulnerabilidades em Software', 'SDLC seguro'], flow: ['Commit', 'Build Gradle', 'SAST/SCA', 'Testes', 'Release'], repo: 'https://github.com/your-user/prodesk' },
-]
-export const certs = [
-  { name: 'Introduction to Cybersecurity', issuer: 'Cisco', issued: 'MM/AAAA', url: '#', status: 'Verified' },
-  { name: 'Network Infrastructure & Security Fundamentals', issuer: 'Emissor', issued: 'MM/AAAA', url: '#', status: 'Verified' },
-  { name: 'Trilha SOC Analyst', issuer: 'Plataforma', issued: 'Em andamento', url: '#', status: 'Ongoing' },
-  { name: 'Trilha de Auditoria de Segurança', issuer: 'Plataforma', issued: 'Em andamento', url: '#', status: 'Ongoing' },
-]
-export const boschValues = [
-  { k: 'IoT Security', v: 'Enumeração de serviços e superfície de ataque (Nmap, Gobuster) aplicada a dispositivos e redes conectadas.' },
-  { k: 'Automotive Cyber Defense', v: 'Mentalidade de modelagem de ameaças com MITRE ATT&CK e escalonamento de privilégios em laboratório.' },
-  { k: 'Zero Trust', v: 'Menor privilégio, baselines de Active Directory e hardening de AndroidManifest no ProDesk.' },
-  { k: 'Incident Response', v: 'Atendimento diário de ~1.500 usuários no GLPI, triagem de logs em SIEM e relatórios executivos.' },
-]
-export const focusAreas = [
-  { t: 'Embedded Systems & IoT Security', d: 'Proteção da borda: exposição de serviços, integridade de telemetria e segmentação de rede.' },
-  { t: 'Engenharia Social e fator humano', d: 'Análise comportamental aplicada a phishing, conscientização e suporte centrado no usuário.' },
-  { t: 'Operational Technology (OT) Security', d: 'Visibilidade e monitoramento de rede herdados da rotina de infraestrutura.' },
+  {
+    id: 'dvwa',
+    title: 'DVWA — Web Penetration Testing Lab',
+    summary: 'Laboratório de pentest web em ambiente controlado utilizando DVWA. Documentação prática de reconhecimento, interceptação de tráfego, exploração de vulnerabilidades OWASP Top 10 e recomendações de mitigação, incluindo SQL Injection, XSS, Command Injection, File Inclusion e força bruta.',
+    tags: ['Web Pentest', 'OWASP Top 10', 'Burp Suite', 'OWASP ZAP', 'SQLmap', 'Linux'],
+    flow: ['Reconnaissance', 'Traffic Analysis', 'Vulnerability Testing', 'Exploitation', 'Remediation Report'],
+    repo: 'https://github.com/Bonfim-Lipeh/dvwa-pentest-lab'
+  },
+  {
+    id: 'photographer',
+    title: 'Photographer — VulnHub Pentest Lab',
+    summary: 'Teste de invasão documentado em laboratório virtual da plataforma VulnHub. Exploração metódica da superfície de ataque, enumeração de serviços, descoberta de diretórios, investigação de vulnerabilidades e escalonamento de privilégios, com registro de evidências e relatório técnico.',
+    tags: ['Ethical Hacking', 'Nmap', 'Gobuster', 'Netcat', 'Linux', 'Privilege Escalation'],
+    flow: ['Reconnaissance', 'Port Scanning', 'Service Enumeration', 'Exploitation', 'Privilege Escalation'],
+    repo: 'https://github.com/Bonfim-Lipeh/photographer-lab'
+  },
+  {
+    id: 'prodesk',
+    title: 'ProDesk — Mobile App & DevSecOps',
+    summary: 'Aplicação mobile voltada à conexão entre profissionais, empresas e espaços de coworking. Projeto de desenvolvimento Android que busca integrar boas práticas de engenharia de software, automação de builds, integração contínua, testes e análise de segurança desde as primeiras etapas do ciclo de desenvolvimento.',
+    tags: ['Android', 'Kotlin / Java', 'Gradle', 'GitHub', 'CI/CD', 'DevSecOps'],
+    flow: ['Mobile Development', 'Version Control', 'Automated Builds', 'Security Analysis', 'Continuous Integration'],
+    repo: 'https://github.com/Bonfim-Lipeh/AppProDesk_'
+  },
 ]
