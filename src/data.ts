@@ -3,7 +3,7 @@ import { s } from "framer-motion/client"
 // TODO: replace every "#"/placeholder below with your real links and dates.
 export const profile = {
   name: 'Felipe Bonfim Pontes',
-  cvUrl: '/public/Felipe_Bonfim_Pontes_Curriculo_Cyberseguranca (1).pdf', // put your PDF at public/cv.pdf
+  cvUrl: '/Felipe_Bonfim_Pontes_Curriculo_Cyberseguranca%20(1).pdf',
   github: 'https://github.com/Bonfim-Lipeh',
   linkedin: 'https://www.linkedin.com/in/felipe-bonfim-pontes-b8807a178/',
   email: 'felipebonfimpontes@gmail.com',
@@ -23,10 +23,10 @@ export type Certification = {
 }
 
 export const certs: Certification[] = [
-  { name: 'Junior Cybersecurity Analyst', issuer: 'Portfolio', status: 'Verified', issued: '2026', url: 'dist/Introduction_to_Cybersecurity_certificate_2370.pdf' },
+  { name: 'Junior Cybersecurity Analyst', issuer: 'Portfolio', status: 'Verified', issued: '2026', url: 'public/Introduction_to_Cybersecurity_certificate_237023-facens-br_220fbbd4-37a1-4b2c-9f65-7c1006189a5d.pdf' },
   { name: 'Ethical Hacker', issuer: 'Portfolio', status: 'In progress', issued: '2026', url: '#' },
   { name: 'ISO 27001 & Governance', issuer: 'Portfolio', status: 'In progress', issued: '2026', url: '#' },
-  { name: 'Network Security Basics', issuer: 'Portfolio', status: 'Verified', issued: '2026', url: 'dist/Network_Security_Basics_certificate_2371.pdf' },
+  { name: 'Network Security Basics', issuer: 'Portfolio', status: 'Verified', issued: '2026', url: 'public/Networking_Basics_certificate_237023-facens-br_c7c51a7d-ef42-4a7a-83f1-9326395fd027.pdf' },
 ]
 
 export type BoschValue = { k: string; v: string }

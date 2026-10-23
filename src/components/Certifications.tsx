@@ -17,7 +17,11 @@ export default function Certifications() {
             </div>
             <div className="mt-3 flex items-center justify-between font-mono text-xs text-slate-300 sm:opacity-0 sm:transition-opacity sm:group-focus-within:opacity-100 sm:group-hover:opacity-100">
               <span>Emitido: {c.issued}</span>
-              <a href={c.url} target="_blank" rel="noreferrer" className="underline decoration-bosch underline-offset-4">Verificar<span className="sr-only"> {c.name}</span></a>
+              {c.url && c.url !== '#' ? (
+                <a href={c.url} target="_blank" rel="noreferrer" className="underline decoration-bosch underline-offset-4">Verificar<span className="sr-only"> {c.name}</span></a>
+              ) : (
+                <span className="text-mute">Documento não disponível</span>
+              )}
             </div>
           </li>
         ))}
