@@ -3,10 +3,10 @@ import { X } from 'lucide-react'
 import { skills, certs, projects, boschValues } from '../data'
 
 type Line = { cmd?: string; out?: string[] }
-const HELP = ['Available commands:', '  help           list commands', '  skills         technical skills', '  certifications credentials', '  projects       featured work', '  bosch          why BOSCH', '  clear          clear screen']
+const HELP = ['Comandos disponíveis:', '  help           list commands', '  skills         technical skills', '  certifications credentials', '  projects       featured work', '  bosch          why BOSCH', '  clear          clear screen']
 
 export default function Terminal() {
-  const [lines, setLines] = useState<Line[]>([{ out: ['Security terminal ready. Type "help".'] }])
+  const [lines, setLines] = useState<Line[]>([{ out: ['Terminal pronto. Digite "help".'] }])
   const [val, setVal] = useState('')
   const [modal, setModal] = useState(false)
   const end = useRef<HTMLDivElement>(null)
@@ -28,17 +28,17 @@ export default function Terminal() {
       case 'skills': out = skills.map(s => `  • ${s}`); break
       case 'certifications': out = certs.map(c => `  • ${c.name} (${c.issuer}) — ${c.status}`); break
       case 'projects': out = projects.map(p => `  • ${p.title}`); break
-      case 'bosch': out = ['Opening alignment report…']; setModal(true); break
+      case 'bosch': out = ['Abrindo relatório de alinhamento…']; setModal(true); break
       case 'clear': setLines([]); return
       case '': return
-      default: out = [`command not found: ${cmd}. Type "help".`]
+      default: out = [`comando não encontrado: ${cmd}. Digite "help".`]
     }
     setLines(l => [...l, { cmd: raw, out }])
   }
 
   return (
     <section id="terminal" aria-labelledby="t-h" className="mx-auto max-w-6xl px-6 py-20">
-      <h2 id="t-h" className="mb-6 text-3xl font-bold">Interactive terminal</h2>
+      <h2 id="t-h" className="mb-6 text-3xl font-bold">Terminal interativo</h2>
       <div className="border border-line bg-black/40 font-mono text-sm" onClick={() => document.getElementById('term-in')?.focus()}>
         <div className="flex items-center gap-2 border-b border-line bg-panel px-4 py-2 text-mute"><span className="h-2.5 w-2.5 rounded-full bg-bosch" aria-hidden />felipe@soc:~</div>
         <div role="log" aria-live="polite" className="h-72 overflow-y-auto p-4">
@@ -52,7 +52,7 @@ export default function Terminal() {
         </div>
         <form onSubmit={e => { e.preventDefault(); run(val); setVal('') }} className="flex items-center gap-2 border-t border-line px-4 py-3">
           <label htmlFor="term-in" className="text-bosch">$</label>
-          <input id="term-in" value={val} onChange={e => setVal(e.target.value)} autoComplete="off" spellCheck={false} placeholder="type a command" className="w-full bg-transparent outline-none placeholder:text-mute focus-visible:outline-none" />
+          <input id="term-in" value={val} onChange={e => setVal(e.target.value)} autoComplete="off" spellCheck={false} placeholder="digite um comando" className="w-full bg-transparent outline-none placeholder:text-mute focus-visible:outline-none" />
         </form>
       </div>
       {modal && (
